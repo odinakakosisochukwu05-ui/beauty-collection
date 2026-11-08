@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Beauty Collections</title>
+    <link rel="stylesheet" href="index2.css">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+
+            <a href="index.html" class="logo">
+                BEAUTY <span>COLLECTIONS</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dresses.html">Dresses</a></li>
+                <li><a href="shoes.html">Shoes</a></li>
+                <li><a href="bags.html">Bags</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+
+            <div class="nav-icons">
+              <a href="cart.html" class="cart-link">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="24" height="24"
+         viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.7"
+         stroke-linecap="round"
+         stroke-linejoin="round">
+
+        <path d="M3 3h2l2.5 12h11l2-8H6"/>
+        <circle cx="10" cy="20" r="1"/>
+        <circle cx="18" cy="20" r="1"/>
+
+    </svg>
+
+    <span class="cart-count">0</span>
+</a>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">☰</button>
+
+        </nav>
+    </header>
+
+    <main class="cart-page">
+
+        <div class="cart-heading">
+            <p>YOUR SELECTION</p>
+            <h1>Shopping <span>Cart</span></h1>
+            <p>Review your beautiful selections before checkout.</p>
+        </div>
+
+        <div class="cart-layout">
+
+            <div class="cart-items-section">
+                <h2>Your Items (<span id="cartItemsCount">0</span>)</h2>
+
+                <div id="cartItems"></div>
+
+                <a href="index.html" class="continue-shopping">
+                    ← Continue Shopping
+                </a>
+            </div>
+
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">₦0</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <span>Calculated later</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="cartTotal">₦0</span>
+                </div>
+
+                <button id="checkoutBtn" class="checkout-btn">
+                    PROCEED TO CHECKOUT →
+                </button>
+
+                <p class="cart-note">
+                    Delivery charges will be confirmed before your order is completed.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="index2.js"></script>
+
+</body>
+</html>
