@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index2.css">
+    <link rel="stylesheet" href="./fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR START -->
+    <header class="header">
+
+        <nav class="navbar">
+
+            <!-- LOGO -->
+            <a href="#" class="logo">
+                BEAUTY <span>COLLECTIONS</span>
+            </a>
+
+            <!-- DESKTOP NAVIGATION -->
+            <ul class="nav-links">
+                <li><a href="index2.html" class="active">Home</a></li>
+                <li><a href="dresses.html">Dresses</a></li>
+                <li><a href="shoes.html">Shoes</a></li>
+                <li><a href="bags.html">Bags</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+
+            <!-- NAVBAR ICONS -->
+            <div class="nav-icons">
+
+                <button class="icon-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m16 16 5 5"></path>
+                    </svg>
+                </button>
+
+                <a href="cart.html" class="icon-btn cart-btn" aria-label="Shopping cart">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 3h2l2.5 12h11L21 7H6"></path>
+                        <circle cx="9" cy="20" r="1"></circle>
+                        <circle cx="17" cy="20" r="1"></circle>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+
+            </div>
+
+            <!-- MOBILE MENU BUTTON -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </nav>
+
+    </header>
+
+    <!-- HERO SECTION START -->
+
+    <section class="hero">
+
+        <div class="hero-slideshow">
+
+            <div class="hero-slide active">
+                <img src="hero1.jpg" alt="Luxury fashion collection">
+            </div>
+
+            <div class="hero-slide">
+                <img src="hero2.jpg" alt="Elegant women's fashion">
+            </div>
+
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <p class="hero-subtitle">THE ART OF ELEGANCE</p>
+
+            <h1>
+                Wear Your <br>
+                <span>Confidence.</span>
+            </h1>
+
+            <p class="hero-description">
+                Redefine your style with timeless elegance.
+                Discover statement dresses, stunning shoes
+                and beautiful bags made for the woman who
+                loves to stand out.
+            </p>
+
+            <a href="#dresses" class="hero-btn">
+                SHOP THE COLLECTION
+                <span>→</span>
+            </a>
+
+        </div>
+
+        <div class="hero-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+        </div>
+
+    </section>
+
+    <!-- HERO SECTION END -->
+
+    <!-- PRODUCT CATEGORIES START -->
+
+    <section class="categories" id="categories">
+
+        <div class="section-heading">
+
+            <p>EXPLORE OUR COLLECTIONS</p>
+
+            <h2>Find Your <span>Perfect Style</span></h2>
+
+            <div class="heading-line"></div>
+
+            <p class="heading-description">
+                Discover pieces that celebrate your beauty,
+                confidence and individuality.
+            </p>
+
+        </div>
+
+
+        <div class="category-container">
+
+            <!-- DRESSES -->
+
+            <div class="category-card">
+
+                <div class="category-image">
+                    <img src="./amazon2.jpg" alt="Elegant women's dresses">
+                </div>
+
+                <div class="category-info">
+                    <span>01 / COLLECTION</span>
+
+                    <h3>Dresses</h3>
+
+                    <a href="#dresses">
+                        EXPLORE COLLECTION <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- SHOES -->
+
+            <div class="category-card">
+
+                <div class="category-image">
+                    <img src="/bc-shoe1.jpg" alt="Women's fashion shoes">
+                </div>
+
+                <div class="category-info">
+                    <span>02 / COLLECTION</span>
+
+                    <h3>Shoes</h3>
+
+                    <a href="shoes.html">
+                        EXPLORE COLLECTION <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- BAGS -->
+
+            <div class="category-card">
+
+                <div class="category-image">
+                    <img src="bc-bags1.jpg" alt="Luxury women's handbags">
+                </div>
+
+                <div class="category-info">
+                    <span>03 / COLLECTION</span>
+
+                    <h3>Bags</h3>
+
+                    <a href="bags.html">
+                        EXPLORE COLLECTION <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCT CATEGORIES END -->
+
+    <!-- MOBILE SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+            <h2>BEAUTY <span>COLLECTIONS</span></h2>
+
+            <button id="closeSidebar" aria-label="Close menu">&times;</button>
+        </div>
+
+        <ul>
+            <li><a href="index2.html">Home</a></li>
+            <li><a href="dresses.html">Dresses</a></li>
+            <li><a href="shoes.html">Shoes</a></li>
+            <li><a href="bags.html">Bags</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+    </aside>
+    <!-- NAVBAR END -->
+
+
+    <script src="index2.js"></script>
+</body>
+
+</html>
