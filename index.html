@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Discover timeless dresses, shoes and bags at Beauty Collections. Find elegant pieces made to celebrate your confidence and individuality.">
+    <meta name="theme-color" content="#fffdf9">
+    <title>Beauty Collections | Elegance Looks Good On You</title>
     <link rel="stylesheet" href="index2.css">
     <link rel="stylesheet" href="./fontawesome-free-7.3.1-web/fontawesome-free-7.3.1-web/css/all.min.css">
 </head>
@@ -17,7 +19,7 @@
         <nav class="navbar">
 
             <!-- LOGO -->
-            <a href="#" class="logo">
+            <a href="index.html" class="logo" aria-label="Beauty Collections home">
                 BEAUTY <span>COLLECTIONS</span>
             </a>
 
@@ -45,7 +47,7 @@
             </div>
 
             <!-- MOBILE MENU BUTTON -->
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -97,8 +99,8 @@
         </div>
 
         <div class="hero-indicators">
-            <span class="indicator active"></span>
-            <span class="indicator"></span>
+            <button class="indicator active" type="button" aria-label="Show first collection image" aria-current="true"></button>
+            <button class="indicator" type="button" aria-label="Show second collection image" aria-current="false"></button>
         </div>
 
     </section>
@@ -198,7 +200,7 @@
     <!-- MOBILE SIDEBAR -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" aria-label="Mobile navigation" aria-hidden="true" inert>
 
         <div class="sidebar-header">
             <h2>BEAUTY <span>COLLECTIONS</span></h2>
@@ -313,7 +315,7 @@
 
           <div class="social-links">
 
-    <a href="https://www.instagram.com/beautycollection/"
+    <a href="https://www.instagram.com/beautycollection_813/"
        target="_blank" rel="noopener noreferrer">
         Instagram
     </a>
