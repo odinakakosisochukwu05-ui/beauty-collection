@@ -6,8 +6,17 @@ const sidebarOverlay = document.getElementById("sidebarOverlay");
 // OPEN SIDEBAR
 if (menuToggle && sidebar && sidebarOverlay) {
     menuToggle.addEventListener("click", () => {
-        sidebar.classList.add("active");
-        sidebarOverlay.classList.add("active");
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        if (isOpen) closeMenu();
+        else {
+            sidebar.classList.add("active");
+            sidebarOverlay.classList.add("active");
+            sidebar.setAttribute("aria-hidden", "false");
+            sidebar.inert = false;
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.setAttribute("aria-label", "Close menu");
+            closeSidebar?.focus();
+        }
     });
 }
 
@@ -15,10 +24,16 @@ if (menuToggle && sidebar && sidebarOverlay) {
 function closeMenu() {
     if (sidebar) {
         sidebar.classList.remove("active");
+        sidebar.setAttribute("aria-hidden", "true");
+        sidebar.inert = true;
     }
 
     if (sidebarOverlay) {
         sidebarOverlay.classList.remove("active");
+    }
+    if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
     }
 }
 
@@ -54,6 +69,8 @@ const heroIndicators = document.querySelectorAll(".indicator");
 let currentSlide = 0;
 
 function showHeroSlide(index) {
+    if (!heroSlides.length) return;
+    currentSlide = (index + heroSlides.length) % heroSlides.length;
 
     heroSlides.forEach(slide => {
         slide.classList.remove("active");
@@ -63,11 +80,13 @@ function showHeroSlide(index) {
         indicator.classList.remove("active");
     });
 
-    heroSlides[index].classList.add("active");
+    heroSlides[currentSlide].classList.add("active");
 
-    if (heroIndicators[index]) {
-        heroIndicators[index].classList.add("active");
-    }
+    heroIndicators.forEach((indicator, indicatorIndex) => {
+        const isCurrent = indicatorIndex === currentSlide;
+        indicator.classList.toggle("active", isCurrent);
+        indicator.setAttribute("aria-current", String(isCurrent));
+    });
 }
 
 function nextHeroSlide() {
@@ -78,8 +97,12 @@ function nextHeroSlide() {
 }
 
 // Automatically change images every 6 seconds
-if (heroSlides.length > 1) {
-    setInterval(nextHeroSlide, 5000);
+heroIndicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => showHeroSlide(index));
+});
+
+if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.setInterval(nextHeroSlide, 5000);
 }
 
 // ==============================
@@ -116,9 +139,9 @@ document.querySelectorAll(".add-cart-btn").forEach(button => {
 
         const productCard = button.closest(".product-card");
 
-        const productName = productCard.querySelector("h3").textContent;
-        const productPrice = productCard.querySelector(".product-price").textContent;
-        const productImage = productCard.querySelector("img").getAttribute("src");
+const productName = productCard.querySelector("img").alt;
+const productPrice = productCard.querySelector(".product-price").textContent;
+const productImage = productCard.querySelector("img").getAttribute("src");
 
         // Check if product already exists
         const existingProduct = cart.find(item => {
@@ -388,3 +411,13 @@ for (let i = 0; i < 15; i++) {
 
     fashionContainer.appendChild(emoji);
 }
+
+// AUTOMATIC IMAGE LOADING OPTIMIZATION
+
+document.querySelectorAll(".product-card img").forEach((img, index) => {
+
+    img.loading = index < 3 ? "eager" : "lazy";
+
+    img.decoding = "async";
+
+});
