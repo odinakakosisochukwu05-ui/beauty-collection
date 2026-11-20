@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | BEAUTY COLLECTIONS</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <!-- LOGIN SECTION -->
+        <section class="login-section" id="loginSection">
+
+            <div class="login-box">
+
+                <h1>BEAUTY <span>COLLECTIONS</span></h1>
+
+                <p class="admin-subtitle">ADMINISTRATION PANEL</p>
+
+                <div class="login-heading">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to manage your store.</p>
+                </div>
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+                        <label for="adminEmail">Email Address</label>
+                        <div class="input-field">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input
+                                type="email"
+                                id="adminEmail"
+                                placeholder="Enter your email"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="adminPassword">Password</label>
+                        <div class="input-field">
+                            <i class="fa-solid fa-lock"></i>
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                placeholder="Enter your password"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <button type="submit" id="loginBtn">
+                        Sign In
+                    </button>
+
+                    <p id="loginMessage"></p>
+
+                </form>
+
+                <a href="index.html" class="back-home">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Website
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboardSection" hidden>
+
+            <header class="dashboard-header">
+                <h1>BEAUTY <span>COLLECTIONS</span></h1>
+
+                <button id="logoutBtn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </button>
+            </header>
+
+            <div class="dashboard-content">
+
+                <h2>Admin Dashboard</h2>
+                <p>Manage your store from one place.</p>
+
+                <div class="dashboard-cards">
+
+                    <div class="dashboard-card">
+                        <i class="fa-solid fa-box"></i>
+                        <h3>Total Products</h3>
+                        <p id="totalProducts">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <h3>Available Products</h3>
+                        <p id="availableProducts">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <i class="fa-solid fa-ban"></i>
+                        <h3>Out of Stock</h3>
+                        <p id="outOfStock">0</p>
+                    </div>
+
+                </div>
+
+           <div class="products-section">
+    <h2>Product Management</h2>
+
+    <button id="addProductBtn">
+        <i class="fa-solid fa-plus"></i>
+        Add New Product
+    </button>
+
+    <!-- ADD PRODUCT FORM -->
+
+    <form id="addProductForm" hidden>
+
+
+        <div class="input-group">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" placeholder="Enter product name" required>
+        </div>
+
+        <div class="input-group">
+            <label for="productDescription">Product Description</label>
+            <textarea id="productDescription" placeholder="Enter product description"></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="productPrice">Product Price (₦)</label>
+            <input type="number" id="productPrice" min="0" step="0.01" placeholder="Enter price" required>
+        </div>
+
+        <div class="input-group">
+            <label for="productCategory">Category</label>
+            <select id="productCategory" required>
+                <option value="">Select Category</option>
+                <option value="Dresses">Dresses</option>
+                <option value="Shoes">Shoes</option>
+                <option value="Bags">Bags</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="productImage">Product Image</label>
+            <input type="file" id="productImage" accept="image/jpeg,image/png,image/webp" required>
+        </div>
+
+        <div class="input-group">
+            <label>
+                <input type="checkbox" id="productInStock" checked>
+                Product is available
+            </label>
+        </div>
+
+        <button type="submit" id="saveProductBtn">
+            Save Product
+        </button>
+
+        <p id="productMessage"></p>
+
+    </form>
+
+    <!-- EDIT PRODUCT FORM -->
+
+<form id="editProductForm" hidden>
+
+    <h3>Edit Product</h3>
+
+    <input type="hidden" id="editProductId">
+
+    <div class="input-group">
+        <label for="editProductName">Product Name</label>
+        <input type="text" id="editProductName" required>
+    </div>
+
+    <div class="input-group">
+        <label for="editProductDescription">Product Description</label>
+        <textarea id="editProductDescription"></textarea>
+    </div>
+
+    <div class="input-group">
+        <label for="editProductPrice">Product Price (₦)</label>
+        <input type="number" id="editProductPrice" min="0" step="0.01" required>
+    </div>
+
+    <div class="input-group">
+        <label for="editProductCategory">Category</label>
+        <select id="editProductCategory" required>
+            <option value="Dresses">Dresses</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Bags">Bags</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label for="editProductImage">Change Product Image (Optional)</label>
+        <input type="file" id="editProductImage" accept="image/jpeg,image/png,image/webp">
+    </div>
+
+    <div class="input-group">
+        <label>
+            <input type="checkbox" id="editProductInStock">
+            Product is available
+        </label>
+    </div>
+
+    <button type="submit" id="updateProductBtn">
+        Update Product
+    </button>
+
+    <button type="button" id="cancelEditBtn">
+        Cancel
+    </button>
+
+    <p id="editProductMessage"></p>
+
+</form>
+
+    <div id="productsList"></div>
+</div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+
+</body>
+</html>
