@@ -11,8 +11,7 @@ const supabaseClient = window.supabase.createClient(
 
 // AUTHORISED ADMIN USER
 
-const ADMIN_USER_ID = "d2126b82-9dfb-41bb-a8db-a59cee8d6615";
-
+const ADMIN_USER_ID = "89234274-970f-4fa0-b3c7-ebe4af7fd06f";
 // ADMIN LOGIN
 
 const loginForm = document.getElementById("loginForm");
