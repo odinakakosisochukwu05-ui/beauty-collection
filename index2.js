@@ -3,6 +3,19 @@ const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("closeSidebar");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 
+// SUPABASE CONNECTION
+
+const SUPABASE_URL = "https://cxcbdkthywspiknkvcgz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_tqQkW4ebZpKkGyNo1mQ5VA_td1YEyoM";
+
+const supabaseClient = window.supabase
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    )
+    : null;
+
 // OPEN SIDEBAR
 if (menuToggle && sidebar && sidebarOverlay) {
     menuToggle.addEventListener("click", () => {
