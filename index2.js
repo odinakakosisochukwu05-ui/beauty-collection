@@ -145,49 +145,56 @@ function saveCart() {
     updateCartCount();
 }
 
-// Add products to cart
-document.querySelectorAll(".add-cart-btn").forEach(button => {
+// ADD PRODUCTS TO CART
 
-    button.addEventListener("click", () => {
+document.addEventListener("click", function (e) {
 
-        const productCard = button.closest(".product-card");
+    const button = e.target.closest(".add-cart-btn");
 
-const productName = productCard.querySelector("img").alt;
-const productPrice = productCard.querySelector(".product-price").textContent;
-const productImage = productCard.querySelector("img").getAttribute("src");
+    if (!button) return;
 
-        // Check if product already exists
-        const existingProduct = cart.find(item => {
-            return item.name === productName;
+    const productCard = button.closest(".product-card");
+
+    const productName = productCard.querySelector("img").alt;
+    const productPrice = productCard.querySelector(".product-price").textContent;
+    const productImage = productCard.querySelector("img").getAttribute("src");
+
+    // CHECK IF PRODUCT ALREADY EXISTS
+
+    const existingProduct = cart.find(item => {
+        return item.name === productName;
+    });
+
+    if (existingProduct) {
+
+        existingProduct.quantity++;
+
+    } else {
+
+        cart.push({
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
         });
 
-        if (existingProduct) {
-            existingProduct.quantity++;
-        } else {
+    }
 
-            cart.push({
-                name: productName,
-                price: productPrice,
-                image: productImage,
-                quantity: 1
-            });
+    saveCart();
 
-        }
+    // BUTTON FEEDBACK
 
-        saveCart();
+    const originalText = button.textContent;
 
-        // Button feedback
-        const originalText = button.textContent;
+    button.textContent = "ADDED ✓";
+    button.style.background = "#8a735f";
 
-        button.textContent = "ADDED ✓";
-        button.style.background = "#8a735f";
+    setTimeout(() => {
 
-        setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = "";
-        }, 1200);
+        button.textContent = originalText;
+        button.style.background = "";
 
-    });
+    }, 1200);
 
 });
 
@@ -434,3 +441,110 @@ document.querySelectorAll(".product-card img").forEach((img, index) => {
     img.decoding = "async";
 
 });
+
+// LOAD PRODUCTS FROM SUPABASE
+
+async function loadStoreProducts() {
+
+    const productsContainer = document.getElementById("productsContainer");
+
+    // Stop if this page has no product container
+    if (!productsContainer || !supabaseClient) return;
+
+    const category = productsContainer.dataset.category;
+
+    productsContainer.innerHTML = "<p>Loading products...</p>";
+
+    try {
+
+        const { data, error } = await supabaseClient
+            .from("products")
+            .select("*")
+            .eq("category", category)
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        productsContainer.innerHTML = "";
+
+        if (!data || data.length === 0) {
+            productsContainer.innerHTML = "<p>No products available in this collection yet.</p>";
+            return;
+        }
+
+        data.forEach(product => {
+
+            const productCard = document.createElement("div");
+            productCard.className = "product-card";
+
+            const productImage = document.createElement("div");
+            productImage.className = "product-image";
+
+            const image = document.createElement("img");
+            image.src = product.image_url;
+            image.alt = product.name;
+            image.loading = "lazy";
+            image.decoding = "async";
+
+            const productInfo = document.createElement("div");
+            productInfo.className = "product-info";
+
+            const productCategory = document.createElement("p");
+            productCategory.className = "product-category";
+            productCategory.textContent = "WOMEN'S " + category.toUpperCase();
+
+            const productBottom = document.createElement("div");
+            productBottom.className = "product-bottom";
+const productPrice = document.createElement("span");
+productPrice.className = "product-price";
+productPrice.textContent = "₦" + Number(product.price).toLocaleString("en-NG");
+
+// PRODUCT AVAILABILITY
+
+const stockStatus = document.createElement("p");
+stockStatus.className = "product-stock";
+
+stockStatus.textContent = product.in_stock
+    ? "In Stock"
+    : "Out of Stock";
+
+// ADD TO CART BUTTON
+
+const addButton = document.createElement("button");
+addButton.className = "add-cart-btn";
+addButton.type = "button";
+
+if (product.in_stock) {
+    addButton.textContent = "ADD TO CART";
+} else {
+    addButton.textContent = "OUT OF STOCK";
+    addButton.disabled = true;
+}
+
+            productImage.appendChild(image);
+
+            productBottom.append(productPrice, addButton);
+
+      productInfo.append(productCategory, stockStatus, productBottom);
+
+            productCard.append(productImage, productInfo);
+
+            productsContainer.appendChild(productCard);
+
+        });
+
+    } catch (error) {
+
+        console.error("Product loading error:", error);
+
+        productsContainer.innerHTML =
+            "<p>Unable to load products. Please try again later.</p>";
+
+    }
+
+}
+
+// RUN PRODUCT LOADING
+
+loadStoreProducts();
+
